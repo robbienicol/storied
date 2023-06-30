@@ -8,7 +8,7 @@ const SignOut = () => {
     sessionStorage.setItem("authToken", "")
     setTimeout(() => {
       router.push("/")
-    }, 1000) // Navigates to "/" after 1 second, I used this to simulate a login
+    }, 1000) // Navigates to "/" after 1 second, I used this to simulate a signout
   }
 
   return (
