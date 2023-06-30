@@ -51,24 +51,31 @@ const Header = () => {
         className="flex justify-between items-center p-1"
         style={{ backgroundColor: selectedColor }}
       >
-        <Image src={logoUrl} alt="Storied Logo" width={160} height={80} />
+        <Image
+          priority
+          src={logoUrl}
+          alt="Storied Logo"
+          width={160}
+          height={80}
+        />
+
         <div className="relative">
           <button
-            className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700"
+            className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
             onClick={handleSettingsClick}
           >
             Settings
           </button>
           {loginToken === "winner" ? (
             <button
-              className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700"
+              className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
               onClick={handleSignoutClick}
             >
               hello@hi.com
             </button>
           ) : (
             <button
-              className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700"
+              className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
               onClick={handleLoginClick}
             >
               Login

@@ -7,8 +7,6 @@ interface IEmailTypes {
 }
 
 const Login = ({ email, setEmail }: IEmailTypes) => {
-  // FIX: tell chatgpt to add formik
-
   const router = useRouter()
   const [password, setPassword] = React.useState<string>("")
 
@@ -25,15 +23,15 @@ const Login = ({ email, setEmail }: IEmailTypes) => {
   }
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
-    // If the creds are correct I am getting the token and taking you to /Home.
+    // If the creds are correct I am getting the token and taking you to /home.
     if (email === "hello@hi.com" && password === "password") {
       sessionStorage.setItem("authToken", "winner")
       e.preventDefault()
       setTimeout(() => {
-        router.push("/Home")
-      }, 1000) // Navigates to "/Home" after 1 second, I used this to simulate a login
+        router.push("/home")
+      }, 1000) // Navigates to "/home" after 1 second, I used this to simulate a login
     } else {
-      // FIX: ADD AN ERROR TOAST
+      alert("You have entered the wrong credentials. Try again.")
     }
   }
 
@@ -41,7 +39,7 @@ const Login = ({ email, setEmail }: IEmailTypes) => {
     <div className="absolute top-full right-0 mt-2 bg-black rounded-md shadow-lg">
       <form onSubmit={handleSubmit}>
         <ul className="py-1">
-          <li className="px-4 py-2">Email</li>
+          <li className="px-4 py-2 text-white">Email</li>
           <div className="justify-between items-center">
             <input
               value={email}

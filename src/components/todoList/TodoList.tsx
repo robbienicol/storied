@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react"
+import React from "react"
 import TodoItems from "./TodoItems"
 import AddTodos from "./AddTodos"
 
@@ -13,7 +13,7 @@ export interface ITodoState {
 }
 
 const TodoList: React.FC = () => {
-  const [todos, setTodos] = useState<ITodoItem[]>([])
+  const [todos, setTodos] = React.useState<ITodoItem[]>([])
 
   return (
     <div className="w-full p-4">

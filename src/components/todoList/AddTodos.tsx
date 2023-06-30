@@ -1,60 +1,80 @@
-import React, { useState, useEffect, ChangeEvent } from "react"
+import React from "react"
+import styled from "styled-components"
 import { ITodoState, ITodoItem } from "./TodoList"
 
+const AddTodosContainer = styled.div`
+  display: flex;
+  margin-bottom: 1rem;
+`
+
+const Button = styled.button`
+  background-color: black;
+  width: 6rem;
+  height: 3rem;
+  padding: 0.25rem;
+  color: white;
+  text-align: center;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: gray;
+  }
+`
+
+const Input = styled.input`
+  border: 1px solid gray;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  color: black;
+`
+
 const AddTodos = ({ setTodos, todos }: ITodoState) => {
-  const [inputText, setInputText] = useState<string>("")
+  const [inputText, setInputText] = React.useState<string>("")
 
-  // Storing todos in local storage
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
-
-  // Fetching Todos
-  useEffect(() => {
+  React.useEffect(() => {
     const storedTodos = localStorage.getItem("todos")
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos))
     }
   }, [])
 
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value)
   }
 
   const handleAddTodo = () => {
-    // If length is 0 basically
-    if (inputText.trim() === "") {
-      return
-    }
-
     const newTodo: ITodoItem = {
-      // FIX: i dont like storing the date as an id
-      id: Date.now(),
+      id: todos.length + 1,
       text: inputText,
       isFavorite: false,
     }
 
     setTodos([newTodo, ...todos])
+    localStorage.setItem("todos", JSON.stringify(todos))
     setInputText("")
   }
+
   return (
-    <div className="flex mb-4">
-      <div className="pr-4 flex justify-center align-middle">
-        <button
-          className="bg-black w-20 hover:bg-gray-600 text-white text-sm rounded px-1"
-          onClick={handleAddTodo}
-        >
-          Add Note
-        </button>
+    <AddTodosContainer>
+      <div
+        style={{
+          paddingRight: "0.5rem",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Button onClick={handleAddTodo}>Add Note</Button>
       </div>
-      <input
+      <Input
         type="text"
-        className="border border-gray-300 rounded px-4 py-2 w-full text-black"
-        placeholder="add a note"
+        placeholder="Add a note"
         value={inputText}
         onChange={handleInputChange}
       />
-    </div>
+    </AddTodosContainer>
   )
 }
 

@@ -61,36 +61,37 @@ const Settings = ({
     <div className="absolute top-full right-0 mt-2 bg-black rounded-md shadow-lg">
       <ul className="py-0">
         <li
-          className="px-4 py-2 hover:bg-gray-700"
+          className="px-4 py-2 hover:bg-gray-700 text-white"
           onClick={handleAudioDeviceOptionClick}
         >
           Audio Input Device
         </li>
         {isAudioDeviceOpen && (
-          <li className="px-4 py-2">
+          <li className="px-4 py-2 text-white">
             <select
               value={selectedDevice}
               className="text-black"
               onChange={handleDeviceChange}
             >
-              {inputDevices.map((device) => (
-                <option key={device.deviceId} value={device.deviceId}>
-                  {device.label || `Device ${device.deviceId}`}
-                </option>
-              ))}
+              {inputDevices.length > 0 &&
+                inputDevices.map((device) => (
+                  <option key={device.deviceId} value={device.deviceId}>
+                    {device.label || `Device ${device.deviceId}`}
+                  </option>
+                ))}
             </select>
           </li>
         )}
         {isColorPickerOpen ? (
           <li
-            className="px-4 py-2 hover:bg-green-500 bg-green-700"
+            className="px-4 py-2 hover:bg-green-500 bg-green-700 text-white"
             onClick={closeColorPicker}
           >
             All Done?
           </li>
         ) : (
           <li
-            className="px-4 py-2 hover:bg-gray-700"
+            className="px-4 py-2 hover:bg-gray-700 text-white"
             onClick={handleColorPickerOptionClick}
           >
             Color Picker
