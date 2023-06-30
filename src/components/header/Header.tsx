@@ -1,4 +1,3 @@
-"use client"
 import React from "react"
 import { ChromePicker } from "react-color"
 import Settings from "./Settings"
@@ -37,6 +36,7 @@ const Header = () => {
     setIsLoginOpen(!isLoginOpen)
     setIsSettingsOpen(false)
   }
+
   const handleSignoutClick = () => {
     setIsSignoutOpen(!isSignoutOpen)
     setIsSettingsOpen(false)
@@ -45,51 +45,56 @@ const Header = () => {
   const handleColorChange = (color: { hex: React.SetStateAction<string> }) => {
     setSelectedColor(color.hex)
   }
+
   return (
     <div>
       <header
-        className="flex justify-between items-center p-1"
+        className="flex flex-wrap items-center p-1"
         style={{ backgroundColor: selectedColor }}
       >
-        <Image
-          priority
-          src={logoUrl}
-          alt="Storied Logo"
-          width={160}
-          height={80}
-        />
+        <div className="flex items-center flex-shrink-0 mr-6">
+          <Image
+            priority
+            src={logoUrl}
+            alt="Storied Logo"
+            width={160}
+            height={80}
+          />
+        </div>
 
-        <div className="relative">
-          <button
-            className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
-            onClick={handleSettingsClick}
-          >
-            Settings
-          </button>
-          {loginToken === "winner" ? (
+        <div className="flex-grow md:flex md:items-center md:w-auto">
+          <div className="relative">
             <button
-              className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
-              onClick={handleSignoutClick}
+              className="px-2 mr-3 sm: mt-2 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
+              onClick={handleSettingsClick}
             >
-              hello@hi.com
+              Settings
             </button>
-          ) : (
-            <button
-              className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
-              onClick={handleLoginClick}
-            >
-              Login
-            </button>
-          )}
-          {isSettingsOpen && (
-            <Settings
-              isColorPickerOpen={isColorPickerOpen}
-              setIsColorPickerOpen={setIsColorPickerOpen}
-              setIsSettingsOpen={setIsSettingsOpen}
-            />
-          )}
-          {isLoginOpen && <Login email={email} setEmail={setEmail} />}
-          {isSignoutOpen && <SignOut />}
+            {loginToken === "winner" ? (
+              <button
+                className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
+                onClick={handleSignoutClick}
+              >
+                hello@hi.com
+              </button>
+            ) : (
+              <button
+                className="px-2 mr-3 py-2 border border-white rounded-md hover:bg-gray-700 text-white"
+                onClick={handleLoginClick}
+              >
+                Login
+              </button>
+            )}
+            {isSettingsOpen && (
+              <Settings
+                isColorPickerOpen={isColorPickerOpen}
+                setIsColorPickerOpen={setIsColorPickerOpen}
+                setIsSettingsOpen={setIsSettingsOpen}
+              />
+            )}
+            {isLoginOpen && <Login email={email} setEmail={setEmail} />}
+            {isSignoutOpen && <SignOut />}
+          </div>
         </div>
       </header>
       {isColorPickerOpen && (
