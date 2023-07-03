@@ -62,7 +62,7 @@ const Header = () => {
           />
         </div>
 
-        <div className="flex-grow md:flex md:items-center md:w-auto">
+        <div className="flex-grow md:flex justify-end md:items-center  md:w-auto">
           <div className="relative">
             <button
               className="px-2 mr-3 sm: mt-2 py-2 border border-white rounded-md hover:bg-gray-700 text-white"

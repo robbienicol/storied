@@ -48,7 +48,7 @@ const Login = ({ email, setEmail }: IEmailTypes) => {
               type="email"
             />
           </div>
-          <li className="px-4 py-2">Password</li>
+          <li className="px-4 py-2  text-white">Password</li>
           <input
             value={password}
             onChange={passwordInput}
@@ -58,7 +58,7 @@ const Login = ({ email, setEmail }: IEmailTypes) => {
           <div className="text-center">
             <button
               type="submit"
-              className="mt-2 mx-2 rounded-md px-2 py-2 hover:bg-gray-700"
+              className="mt-2 mx-2 rounded-md px-2 py-2 hover:bg-gray-700  text-white"
             >
               Login
             </button>
